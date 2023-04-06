@@ -1,0 +1,7 @@
+## Way to think April 2023
+
+- Create one test for each use case
+
+New feature Conjured item
+
+- Create test for conjured item
