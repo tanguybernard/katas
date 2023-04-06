@@ -112,12 +112,15 @@ class GildedRose(var items: List<Item>) {
 
     class ClassicStrategy : ItemStrategy {
         override fun execute(item : Item): Item {
-            if(item.quality > 1) {
+            if(item.sellIn > 1) {
                 item.quality -=1
             }
+            else {
+                item.quality -=2
+            }
 
-            if(item.sellIn <=0) {
-                item.quality -=1
+            if(item.quality < 0) {
+                item.quality = 0
             }
 
             item.sellIn -=1

@@ -198,6 +198,46 @@ internal class GildedRoseTest {
 
     }
 
+
+    @Test
+    fun `16 times`(){
+
+        val items = listOf(
+            Item("+5 Dexterity Vest", 10, 20), //
+            Item("Aged Brie", 2, 0), //
+            Item("Elixir of the Mongoose", 5, 7), //
+            Item("Sulfuras, Hand of Ragnaros", 0, 80), //
+            Item("Sulfuras, Hand of Ragnaros", -1, 80),
+            Item(Backstage, 18, 17), // 17+(8 days *1)+ (5 days *2) + (3 days *3)
+            Item(Backstage, 10, 49),
+            Item(Backstage, 5, 49),
+            Item("Conjured Mana Cake", 3, 6)
+
+        )
+
+        val app = GildedRose(items)
+        for(i in 0..15){
+            app.updateQualityV2()
+
+        }
+
+
+        assertThat(listOf(
+            Item("+5 Dexterity Vest", -6, 0), //
+            Item("Aged Brie", -14, 16), //
+            Item("Elixir of the Mongoose", -11, 0), //
+            Item("Sulfuras, Hand of Ragnaros", 0, 80), //
+            Item("Sulfuras, Hand of Ragnaros", -1, 80),
+            Item(Backstage, 2, 44),
+            Item(Backstage, -6, 0),
+            Item(Backstage, -11, 0),
+            Item("Conjured Mana Cake", -13, 0)
+
+        )).usingRecursiveComparison().isEqualTo(app.items)
+
+
+    }
+
 }
 
 
