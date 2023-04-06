@@ -4,13 +4,15 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
+private const val Backstage = "Backstage passes to a TAFKAL80ETC concert"
+
 internal class GildedRoseTest {
 
     @Test
     fun foo() {
         val items = listOf(Item("foo", 0, 0))
         val app = GildedRose(items)
-        app.updateQuality()
+        app.updateQualityV2()
         assertEquals("foo", app.items[0].name)
 
     }
@@ -24,7 +26,7 @@ internal class GildedRoseTest {
         )
 
         val app = GildedRose(items)
-        app.updateQuality()
+        app.updateQualityV2()
             assertThat(listOf(
             Item("+5 Dexterity Vest", 9, 19),
             Item("Elixir of the Mongoose", 4, 6)
@@ -41,7 +43,7 @@ internal class GildedRoseTest {
         )
 
         val app = GildedRose(items)
-        app.updateQuality()
+        app.updateQualityV2()
         assertThat(listOf(
             Item("+5 Dexterity Vest", -1, 2),
             Item("Elixir of the Mongoose", -2, 5)
@@ -56,7 +58,7 @@ internal class GildedRoseTest {
         )
 
         val app = GildedRose(items)
-        app.updateQuality()
+        app.updateQualityV2()
         assertThat(listOf(
             Item("Aged Brie", 0, 5),
         )).usingRecursiveComparison().ignoringCollectionOrder().isEqualTo(app.items)
@@ -69,7 +71,7 @@ internal class GildedRoseTest {
         )
 
         val app = GildedRose(items)
-        app.updateQuality()
+        app.updateQualityV2()
         assertThat(listOf(
             Item("Aged Brie", 2, 50),
         )).usingRecursiveComparison().ignoringCollectionOrder().isEqualTo(app.items)
@@ -84,7 +86,7 @@ internal class GildedRoseTest {
         )
 
         val app = GildedRose(items)
-        app.updateQuality()
+        app.updateQualityV2()
         assertThat(listOf(
             Item("Aged Brie", 2, 51),
         )).usingRecursiveComparison().ignoringCollectionOrder().isEqualTo(app.items)
@@ -99,7 +101,7 @@ internal class GildedRoseTest {
         )
 
         val app = GildedRose(items)
-        app.updateQuality()
+        app.updateQualityV2()
         assertThat(listOf(
             Item("Sulfuras, Hand of Ragnaros", 3, 40),
         )).usingRecursiveComparison().ignoringCollectionOrder().isEqualTo(app.items)
@@ -109,13 +111,13 @@ internal class GildedRoseTest {
     fun `Backstage passes, Quality increases by 2 when there are 10 days or less`(){
 
         val items = listOf(
-            Item("Backstage passes to a TAFKAL80ETC concert", 9, 40),
+            Item(Backstage, 9, 40),
         )
 
         val app = GildedRose(items)
-        app.updateQuality()
+        app.updateQualityV2()
         assertThat(listOf(
-            Item("Backstage passes to a TAFKAL80ETC concert", 8, 42),
+            Item(Backstage, 8, 42),
         )).usingRecursiveComparison().ignoringCollectionOrder().isEqualTo(app.items)
     }
 
@@ -123,13 +125,13 @@ internal class GildedRoseTest {
     fun `Backstage passes, Quality increases by 3 when there are 5 days or less`(){
 
         val items = listOf(
-            Item("Backstage passes to a TAFKAL80ETC concert", 5, 40),
+            Item(Backstage, 5, 40),
         )
 
         val app = GildedRose(items)
-        app.updateQuality()
+        app.updateQualityV2()
         assertThat(listOf(
-            Item("Backstage passes to a TAFKAL80ETC concert", 4, 43),
+            Item(Backstage, 4, 43),
         )).usingRecursiveComparison().ignoringCollectionOrder().isEqualTo(app.items)
     }
 
@@ -137,13 +139,13 @@ internal class GildedRoseTest {
     fun `Backstage passes, Quality drops to 0 after the concert`(){
 
         val items = listOf(
-            Item("Backstage passes to a TAFKAL80ETC concert", 0, 40),
+            Item(Backstage, 0, 40),
         )
 
         val app = GildedRose(items)
-        app.updateQuality()
+        app.updateQualityV2()
         assertThat(listOf(
-            Item("Backstage passes to a TAFKAL80ETC concert", -1, 0),
+            Item(Backstage, -1, 0),
         )).usingRecursiveComparison().ignoringCollectionOrder().isEqualTo(app.items)
     }
 
@@ -156,31 +158,45 @@ internal class GildedRoseTest {
             Item("Elixir of the Mongoose", 5, 7), //
             Item("Sulfuras, Hand of Ragnaros", 0, 80), //
             Item("Sulfuras, Hand of Ragnaros", -1, 80),
-            Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
-            Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
-            Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
-            //TODO this conjured item does not work properly yet
-            //Item("Conjured Mana Cake", 3, 6)
+            Item(Backstage, 15, 20),
+            Item(Backstage, 10, 49),
+            Item(Backstage, 5, 49),
+            Item("Conjured Mana Cake", 3, 6)
 
         )
 
 
         val app = GildedRose(items)
-        app.updateQuality()
+        app.updateQualityV2()
         assertThat(listOf(
             Item("+5 Dexterity Vest", 9, 19), //
             Item("Aged Brie", 1, 1), //
             Item("Elixir of the Mongoose", 4, 6), //
             Item("Sulfuras, Hand of Ragnaros", 0, 80), //
             Item("Sulfuras, Hand of Ragnaros", -1, 80),
-            Item("Backstage passes to a TAFKAL80ETC concert", 14, 21),
-            Item("Backstage passes to a TAFKAL80ETC concert", 9, 50),
-            Item("Backstage passes to a TAFKAL80ETC concert", 4, 50),
+            Item(Backstage, 14, 21),
+            Item(Backstage, 9, 50),
+            Item(Backstage, 4, 50),
+            Item("Conjured Mana Cake", 2, 4)
+
         )).usingRecursiveComparison().isEqualTo(app.items)
 
     }
 
+    @Test
+    fun `Conjured Mana Cake item degrade in Quality twice as fast as normal items`(){
 
+        val items = listOf(
+            Item("Conjured Mana Cake", 3, 6),
+        )
+
+        val app = GildedRose(items)
+        app.updateQualityV2()
+        assertThat(listOf(
+            Item("Conjured Mana Cake", 2, 4),
+        )).usingRecursiveComparison().ignoringCollectionOrder().isEqualTo(app.items)
+
+    }
 
 }
 

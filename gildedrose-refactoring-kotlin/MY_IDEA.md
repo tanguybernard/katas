@@ -5,3 +5,4 @@
 New feature Conjured item
 
 - Create test for conjured item
+- Create new updateQualityV2 with Strategy Pattern
