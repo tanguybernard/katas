@@ -12,7 +12,7 @@ internal class GildedRoseTest {
     fun foo() {
         val items = listOf(Item("foo", 0, 0))
         val app = GildedRose(items)
-        app.updateQualityV2()
+        app.updateQualityFunctional()
         assertEquals("foo", app.items[0].name)
 
     }
@@ -26,7 +26,7 @@ internal class GildedRoseTest {
         )
 
         val app = GildedRose(items)
-        app.updateQualityV2()
+        app.updateQualityFunctional()
             assertThat(listOf(
             Item("+5 Dexterity Vest", 9, 19),
             Item("Elixir of the Mongoose", 4, 6)
@@ -43,7 +43,7 @@ internal class GildedRoseTest {
         )
 
         val app = GildedRose(items)
-        app.updateQualityV2()
+        app.updateQualityFunctional()
         assertThat(listOf(
             Item("+5 Dexterity Vest", -1, 2),
             Item("Elixir of the Mongoose", -2, 5)
@@ -58,7 +58,7 @@ internal class GildedRoseTest {
         )
 
         val app = GildedRose(items)
-        app.updateQualityV2()
+        app.updateQualityFunctional()
         assertThat(listOf(
             Item("Aged Brie", 0, 5),
         )).usingRecursiveComparison().ignoringCollectionOrder().isEqualTo(app.items)
@@ -71,7 +71,7 @@ internal class GildedRoseTest {
         )
 
         val app = GildedRose(items)
-        app.updateQualityV2()
+        app.updateQualityFunctional()
         assertThat(listOf(
             Item("Aged Brie", 2, 50),
         )).usingRecursiveComparison().ignoringCollectionOrder().isEqualTo(app.items)
@@ -86,9 +86,9 @@ internal class GildedRoseTest {
         )
 
         val app = GildedRose(items)
-        app.updateQualityV2()
+        app.updateQualityFunctional()
         assertThat(listOf(
-            Item("Aged Brie", 2, 51),
+            Item("Aged Brie", 2, 50),
         )).usingRecursiveComparison().ignoringCollectionOrder().isEqualTo(app.items)
     }
 
@@ -101,7 +101,7 @@ internal class GildedRoseTest {
         )
 
         val app = GildedRose(items)
-        app.updateQualityV2()
+        app.updateQualityFunctional()
         assertThat(listOf(
             Item("Sulfuras, Hand of Ragnaros", 3, 40),
         )).usingRecursiveComparison().ignoringCollectionOrder().isEqualTo(app.items)
@@ -115,7 +115,7 @@ internal class GildedRoseTest {
         )
 
         val app = GildedRose(items)
-        app.updateQualityV2()
+        app.updateQualityFunctional()
         assertThat(listOf(
             Item(Backstage, 8, 42),
         )).usingRecursiveComparison().ignoringCollectionOrder().isEqualTo(app.items)
@@ -129,7 +129,7 @@ internal class GildedRoseTest {
         )
 
         val app = GildedRose(items)
-        app.updateQualityV2()
+        app.updateQualityFunctional()
         assertThat(listOf(
             Item(Backstage, 4, 43),
         )).usingRecursiveComparison().ignoringCollectionOrder().isEqualTo(app.items)
@@ -143,7 +143,7 @@ internal class GildedRoseTest {
         )
 
         val app = GildedRose(items)
-        app.updateQualityV2()
+        app.updateQualityFunctional()
         assertThat(listOf(
             Item(Backstage, -1, 0),
         )).usingRecursiveComparison().ignoringCollectionOrder().isEqualTo(app.items)
@@ -167,7 +167,7 @@ internal class GildedRoseTest {
 
 
         val app = GildedRose(items)
-        app.updateQualityV2()
+        app.updateQualityFunctional()
         assertThat(listOf(
             Item("+5 Dexterity Vest", 9, 19), //
             Item("Aged Brie", 1, 1), //
@@ -191,7 +191,7 @@ internal class GildedRoseTest {
         )
 
         val app = GildedRose(items)
-        app.updateQualityV2()
+        app.updateQualityFunctional()
         assertThat(listOf(
             Item("Conjured Mana Cake", 2, 4),
         )).usingRecursiveComparison().ignoringCollectionOrder().isEqualTo(app.items)
@@ -208,7 +208,7 @@ internal class GildedRoseTest {
             Item("Elixir of the Mongoose", 5, 7), //
             Item("Sulfuras, Hand of Ragnaros", 0, 80), //
             Item("Sulfuras, Hand of Ragnaros", -1, 80),
-            Item(Backstage, 18, 17), // 17+(8 days *1)+ (5 days *2) + (3 days *3)
+            Item(Backstage, 15, 17),
             Item(Backstage, 10, 49),
             Item(Backstage, 5, 49),
             Item("Conjured Mana Cake", 3, 6)
@@ -217,18 +217,18 @@ internal class GildedRoseTest {
 
         val app = GildedRose(items)
         for(i in 0..15){
-            app.updateQualityV2()
+            app.updateQualityFunctional()
 
         }
 
 
         assertThat(listOf(
             Item("+5 Dexterity Vest", -6, 0), //
-            Item("Aged Brie", -14, 16), //
+            Item("Aged Brie", -14, 30), //
             Item("Elixir of the Mongoose", -11, 0), //
             Item("Sulfuras, Hand of Ragnaros", 0, 80), //
             Item("Sulfuras, Hand of Ragnaros", -1, 80),
-            Item(Backstage, 2, 44),
+            Item(Backstage, -1, 0),
             Item(Backstage, -6, 0),
             Item(Backstage, -11, 0),
             Item("Conjured Mana Cake", -13, 0)

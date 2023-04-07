@@ -17,7 +17,7 @@ fun main(args: Array<String>) {
 
     val app = GildedRose(items)
 
-    var days = 2
+    var days = 17
     if (args.size > 0) {
         days = Integer.parseInt(args[0]) + 1
     }
@@ -31,4 +31,24 @@ fun main(args: Array<String>) {
         println()
         app.updateQuality()
     }
+
+
+    /***
+     *
+    -------- day 16 --------
+    name, sellIn, quality
+    +5 Dexterity Vest, -6, 0
+    Aged Brie, -14, 30
+    Elixir of the Mongoose, -11, 0
+    Sulfuras, Hand of Ragnaros, 0, 80
+    Sulfuras, Hand of Ragnaros, -1, 80
+    Backstage passes to a TAFKAL80ETC concert, -1, 0
+    Backstage passes to a TAFKAL80ETC concert, -6, 0
+    Backstage passes to a TAFKAL80ETC concert, -11, 0
+    Conjured Mana Cake, -13, 0
+
+
+
+     */
+
 }

@@ -56,6 +56,7 @@ class GildedRose(var items: List<Item>) {
 
 
 
+    //----------- V2 with strategic pattern ----------------//
 
     fun updateQualityV2() {
         items.map {  strategy(it).execute(it) }
@@ -70,10 +71,17 @@ class GildedRose(var items: List<Item>) {
     class AgedBrieStrategy : ItemStrategy {
         override fun execute(item : Item): Item{
 
-            item.sellIn -= 1
+
+            var q = 0;
             if(item.quality <50) {
-                item.quality += 1
+                q = 1
+                if(item.sellIn<=0){
+                    q = 2
+                }
+
             }
+            item.quality = Math.min(50,item.quality+q)
+            item.sellIn -= 1
             return item
 
         }
@@ -166,6 +174,38 @@ class GildedRose(var items: List<Item>) {
         }
 
     }
+
+    //----------- V2 functional ----------------//
+
+
+    val lambdaQuality:(Int,Item)->Int={value: Int , item: Item -> item.quality+ if (item.sellIn - 1 < 0) (value * 2) else value}
+
+
+    val createItem:(Item) -> ItemDecorator = { item: Item ->
+        when (item.name) {
+            "Aged Brie" -> ItemAgedBrie(item,1, 1)
+            "Sulfuras, Hand of Ragnaros" -> ItemSulfuras(item,0, 0)
+            "Backstage passes to a TAFKAL80ETC concert" -> ItemBackstage(item,1,1)
+            "Conjured Mana Cake" -> ItemNormal(item,-2, 1)// twice as fast as normal items
+            else -> {
+                ItemNormal(item,-1, 1)
+            }
+        }
+    }
+
+
+    fun updateQualityFunctional() {
+
+
+        items.map {
+           it
+               .let { item -> createItem(item) }
+               .let { item -> item.updateQuality(lambdaQuality);item }
+               .let { item -> item.sell()}
+       }
+    }
+
+
 
 }
 
