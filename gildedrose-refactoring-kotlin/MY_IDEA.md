@@ -1,4 +1,4 @@
-## Way to think April 2023
+## My Way to think April 2023
 
 - Create one test for each use case
 
