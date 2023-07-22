@@ -32,5 +32,34 @@ class DiamondTest {
         )
     }
 
+    @Test
+    fun letterD() {
+        assertThat(Diamond.create('D')).isEqualTo(
+                      "   A   \n"
+                    + "  B B  \n"
+                    + " C   C \n"
+                    + "D     D\n"
+                    + " C   C \n"
+                    + "  B B  \n"
+                    + "   A   ",
+        )
+    }
+
+    @Test
+    fun letterE() {
+        assertThat(Diamond.create('E')).isEqualTo(
+            "    A    \n"
+                    + "   B B   \n"
+                    + "  C   C  \n"
+                    + " D     D \n"
+                    + "E       E\n"
+                    + " D     D \n"
+                    + "  C   C  \n"
+                    + "   B B   \n"
+                    + "    A    ",
+        )
+    }
+
+
 
 }
