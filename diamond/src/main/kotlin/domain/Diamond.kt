@@ -7,7 +7,7 @@ class Diamond {
             val diff = letter.lowercaseChar() - 'A'.lowercaseChar()
 
             if(!letter.equals('A')) {
-                return loop(letter, diff)
+                return loopAndReversed(letter, diff)
             }
             return "A"
 
@@ -16,10 +16,9 @@ class Diamond {
 
         fun loop(letter: Char, diff: Int): String {
 
-            var d =  diff;
+            var d =  diff
             var diamond = ""
-
-            var middle = 0;
+            var middle = 0
 
             diamond+= " ".repeat( d ) + 'A' +" ".repeat( d )
 
@@ -48,6 +47,38 @@ class Diamond {
             return diamond
 
         }
+
+        /**
+         * Iterate alphabet and apply a symmetry (reversed string)
+         */
+        fun loopAndReversed(letter: Char, diff: Int): String {
+
+            var gapStartEnd =  diff
+            var diamond = ""
+            var gapMiddle =0
+
+            diamond+= createA(gapStartEnd)
+
+            gapMiddle=1
+            for (ch in 'B' until  letter) {
+                gapStartEnd-=1
+                diamond+="\n"
+                diamond+=" ".repeat( gapStartEnd ) +ch+" ".repeat( gapMiddle )+ch +" ".repeat( gapStartEnd )
+                gapMiddle+=2
+            }
+
+            val reversed = diamond.reversed()
+            gapStartEnd-=1
+            diamond+="\n"
+            diamond+=" ".repeat( gapStartEnd ) +letter+" ".repeat( gapMiddle )+letter +" ".repeat( gapStartEnd )
+
+
+            return diamond +"\n"+reversed
+
+        }
+
+        val createA= { gapStartEnd: Int -> " ".repeat( gapStartEnd ) + 'A' +" ".repeat( gapStartEnd )}
+
     }
 
 }
