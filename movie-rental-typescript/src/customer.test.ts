@@ -1,8 +1,12 @@
 import {Customer} from "./customer";
 import {Rental} from "./rental";
 import {Movie} from "./movie";
+import {TextFormatterStrategy} from "./text-formatter-strategy";
 
 describe("Customer", () => {
+
+
+
     it("should test", () => {
         const customer = new Customer("Bob");
         customer.addRental(new Rental(new Movie("Jaws", Movie.REGULAR), 2));
@@ -23,7 +27,7 @@ describe("Customer", () => {
             "Amount owed is 19.0\n" +
             "You earned 7 frequent renter points";
 
-        expect(customer.statement()).toBe(expected);
+        expect(customer.statement(new TextFormatterStrategy())).toBe(expected);
     });
 
     it("should test Record for martin", () => {
@@ -39,7 +43,7 @@ describe("Customer", () => {
             "Amount owed is 5.5\n" +
             "You earned 2 frequent renter points";
 
-        expect(customer.statement()).toBe(expected);
+        expect(customer.statement(new TextFormatterStrategy())).toBe(expected);
     });
 
 });

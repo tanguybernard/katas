@@ -19,7 +19,7 @@ export class Customer {
     }
 
     //TODO pass strategy param to statement, strategy for output string or html or json...
-    public statement(): string {
+    public statement(stategy: FormatterStrategy): string {
         let totalAmount: number = 0;
         let frequentRenterPoints: number = 0;
         let movies = [];
@@ -37,8 +37,8 @@ export class Customer {
             totalAmount += thisAmount;
         }
 
-
-        return this.formatString(this.getName(), movies, totalAmount.toFixed(1), frequentRenterPoints)
+        //TODO Create an object with all param , like RentalState
+        return stategy.format(this.getName(), movies, totalAmount.toFixed(1), frequentRenterPoints)
 
     }
 
@@ -73,20 +73,6 @@ export class Customer {
                 break;
         }
         return amount;
-    }
-
-    formatString(name: String, movies: {title: string, amount: string}[], totalAmount: string, frequentRenterPoints:number): string{
-
-        let result = "Rental Record for " + name + "\n";
-
-        movies.forEach(({title, amount}) => {
-            result += "\t" + title + "\t" + amount + "\n";
-        })
-
-        result += "Amount owed is " + totalAmount + "\n";
-        result += "You earned " + frequentRenterPoints + " frequent renter points";
-
-        return result;
     }
 
 
