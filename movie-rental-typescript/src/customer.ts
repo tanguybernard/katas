@@ -21,7 +21,7 @@ export class Customer {
     public statement(): string {
         let totalAmount: number = 0;
         let frequentRenterPoints: number = 0;
-        let result = "Rental Record for " + this.getName() + "\n";
+        let movies = [];
 
         for (const each of this.rentals) {
             let thisAmount = 0;
@@ -52,14 +52,27 @@ export class Customer {
                 frequentRenterPoints++;
 
             // show figures for this rental
-            result += "\t" + each.getMovie().getTitle() + "\t" + thisAmount.toFixed(1) + "\n";
+            movies.push({title: each.getMovie().getTitle(), amount: thisAmount.toFixed(1)})
             totalAmount += thisAmount;
         }
 
-        // add footer lines
-        result += "Amount owed is " + totalAmount.toFixed(1) + "\n";
+
+        return this.formatString(this.getName(), movies, totalAmount.toFixed(1), frequentRenterPoints)
+
+    }
+
+    formatString(name: String, movies: {title: string, amount: string}[], totalAmount: string, frequentRenterPoints:number): string{
+
+        let result = "Rental Record for " + name + "\n";
+
+        movies.forEach(({title, amount}) => {
+            result += "\t" + title + "\t" + amount + "\n";
+        })
+
+        result += "Amount owed is " + totalAmount + "\n";
         result += "You earned " + frequentRenterPoints + " frequent renter points";
 
         return result;
     }
+
 }

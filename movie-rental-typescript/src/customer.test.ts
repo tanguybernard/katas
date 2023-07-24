@@ -25,4 +25,21 @@ describe("Customer", () => {
 
         expect(customer.statement()).toBe(expected);
     });
+
+    it("should test Record for martin", () => {
+        const customer = new Customer("martin");
+        customer.addRental(new Rental(new Movie("Ran", Movie.REGULAR), 3));
+        customer.addRental(new Rental(new Movie("Trois Couleurs: Bleu", Movie.REGULAR), 2));
+
+
+        const expected = "" +
+            "Rental Record for martin\n" +
+            "\tRan\t3.5\n" +
+            "\tTrois Couleurs: Bleu\t2.0\n" +
+            "Amount owed is 5.5\n" +
+            "You earned 2 frequent renter points";
+
+        expect(customer.statement()).toBe(expected);
+    });
+
 });
