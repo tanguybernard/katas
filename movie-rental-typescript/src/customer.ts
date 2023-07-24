@@ -23,24 +23,29 @@ export class Customer {
         let frequentRenterPoints: number = 0;
         let movies = [];
 
-        for (const each of this.rentals) {
+        for (const rentalMovie of this.rentals) {
 
-            const thisAmount = this.getAmount(each);
+            const thisAmount = this.getAmount(rentalMovie);
 
-            // add frequent renter points
-            frequentRenterPoints++;
-            // add bonus for a two day new release rental
-            if ((each.getMovie().getPriceCode() === Movie.NEW_RELEASE) && each.getDaysRented() > 1)
-                frequentRenterPoints++;
+            frequentRenterPoints = this.computePoints(frequentRenterPoints, rentalMovie);
 
             // show figures for this rental
-            movies.push({title: each.getMovie().getTitle(), amount: thisAmount.toFixed(1)})
+            movies.push({title: rentalMovie.getMovie().getTitle(), amount: thisAmount.toFixed(1)})
             totalAmount += thisAmount;
         }
 
 
         return this.formatString(this.getName(), movies, totalAmount.toFixed(1), frequentRenterPoints)
 
+    }
+
+    private computePoints(frequentRenterPoints: number, each: Rental) {
+        // add frequent renter points
+        frequentRenterPoints++;
+        // add bonus for a two day new release rental
+        if ((each.getMovie().getPriceCode() === Movie.NEW_RELEASE) && each.getDaysRented() > 1)
+            frequentRenterPoints++;
+        return frequentRenterPoints;
     }
 
     private getAmount(rental: Rental) {
