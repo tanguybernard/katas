@@ -18,6 +18,7 @@ export class Customer {
         return this.name;
     }
 
+    //TODO pass strategy param to statement, strategy for output string or html or json...
     public statement(): string {
         let totalAmount: number = 0;
         let frequentRenterPoints: number = 0;
@@ -27,10 +28,12 @@ export class Customer {
 
             const thisAmount = this.getAmount(rentalMovie);
 
-            frequentRenterPoints = this.computePoints(frequentRenterPoints, rentalMovie);
+            const aMovie = this.movieFor(rentalMovie);
+
+            frequentRenterPoints = this.computePoints(frequentRenterPoints, rentalMovie.getDaysRented(), aMovie.getPriceCode());
 
             // show figures for this rental
-            movies.push({title: rentalMovie.getMovie().getTitle(), amount: thisAmount.toFixed(1)})
+            movies.push({title: aMovie.getTitle(), amount: thisAmount.toFixed(1)})
             totalAmount += thisAmount;
         }
 
@@ -39,11 +42,12 @@ export class Customer {
 
     }
 
-    private computePoints(frequentRenterPoints: number, each: Rental) {
+    //TODO simplify computePoints
+    private computePoints(frequentRenterPoints: number, daysRented:number, priceCode:number) {
         // add frequent renter points
         frequentRenterPoints++;
         // add bonus for a two day new release rental
-        if ((each.getMovie().getPriceCode() === Movie.NEW_RELEASE) && each.getDaysRented() > 1)
+        if ((priceCode === Movie.NEW_RELEASE) && daysRented > 1)
             frequentRenterPoints++;
         return frequentRenterPoints;
     }
@@ -83,6 +87,11 @@ export class Customer {
         result += "You earned " + frequentRenterPoints + " frequent renter points";
 
         return result;
+    }
+
+
+    movieFor(rental: Rental){
+        return  rental.getMovie()
     }
 
 }
