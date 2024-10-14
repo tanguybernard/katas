@@ -7,7 +7,8 @@ L'idée que j'ai eu (14 oct 2024)
 
 Je commence par 1, 2, 3, 4, 5 et 12.
 J'écris une HashMap je remplis I, IV, V, X et je me rends compte qu'il faut que je fasse une concaténation.
-Je décide d'utiliser une TreeMap qui me permet d'ordonner et de chercher la clé qui a pour valeur égale ou inérieur à celle que je cherche.
+Je décide d'utiliser une TreeMap qui me permet d'ordonner et de chercher la clé qui a pour valeur égale ou inférieur à celle que je cherche.
+
 Exemple je cherche 6 alors on me donne le 5 (V) puis je soustrait et je cherche 1 (I) donc 6 (VI).
 
 J'essaye d'utiliser le property based testing avec des resultats fixe (1 => I, 14 => XIV)...
