@@ -1,6 +1,5 @@
 
 ```java
-package fr.edf.tipienergy.orderservice.bank;
 
 import net.jqwik.api.*;
 import net.jqwik.api.constraints.DoubleRange;
