@@ -21,11 +21,11 @@ Il faudrait que j'enrichisse se dernier point pour avoir de meilleurs vérificat
 ## Pour plus tard :  Property Based Testing
 
 
-  // quelque soit n (entre 1 et 3000) le result contiendra IVXLMC
-  // ...5, 50, 500, V L, D ne repete pas; une seul occurence
-  // 1 meme symbole repetable, pas plus de 3 consecutif
-  // au plus 3 repet d'une meme symbole
-  // au plus 3 repete consecutive
-  //quelque soit n entre 1 et 3000 quand je trouve plusieur occ de I c'est toujours a la fin
+-  // quelque soit n (entre 1 et 3000) le result contiendra IVXLMC
+-  // ...5, 50, 500, V L, D ne repete pas; une seul occurence
+-  // 1 meme symbole repetable, pas plus de 3 consecutif
+-  // au plus 3 repet d'une meme symbole
+-  // au plus 3 repete consecutive
+-  //quelque soit n entre 1 et 3000 quand je trouve plusieur occ de I c'est toujours a la fin
 
   
