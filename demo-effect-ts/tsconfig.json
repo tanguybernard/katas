@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "lib": [            "es5", "es6", "dom", "dom.iterable"
+      ],
+    "downlevelIteration": true, // Important pour les générateurs
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
