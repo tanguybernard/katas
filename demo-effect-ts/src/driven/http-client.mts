@@ -1,4 +1,4 @@
-import { Context } from 'effect';
+import {Context} from 'effect';
 
 
 export interface HttpClient {
@@ -17,15 +17,13 @@ export class HttpClientImplementation implements HttpClient {
     async get(endpoint: string, headers: Record<string, string> = {}): Promise<Response> {
 
         const url = `${this.baseUrl}${endpoint}`;
-        const response = await fetch(url, {
+        return await fetch(url, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 ...headers,
             },
         });
-
-        return response;
     }
 }
 
