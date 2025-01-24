@@ -11,7 +11,7 @@
     "start3": "npx tsx src/deepseek1.mts",
     "start4": "npx tsx src/script-tiny.mts",
     "start5": "npx tsx src/script-tiny-either.mts",
-    "start6": "npx tsx src/step1/main.mts",
+    "step1": "npx tsx src/step1/main.mts",
     "start7": "npx tsx src/step2/main2.mts",
     "start8": "npx tsx src/step2/main1-yield.mts"
   },

@@ -5,8 +5,6 @@ import {userImplemService, UserService} from "./user-service.mjs";
 import {makePosts, Post, PostService} from "./post-service.mjs";
 
 // Programme principal
-
-// Programme principal
 const program = pipe(
     PostService, // Accéder à PostService via le tag
     Effect.flatMap((postService: PostService) =>

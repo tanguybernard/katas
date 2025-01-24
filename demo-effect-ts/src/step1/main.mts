@@ -17,9 +17,7 @@ async function main() {
     }
 }
 
-
 async function getPostWithUserEmails(postService: PostService, userService: UserService): Promise<{ title: string, userEmail: string }[]> {
-
     const posts = await postService.getLast20Posts();
     return await Promise.all(posts.map(async (post) => {
         const userEmail = await userService.getUserEmail(post.userId);
@@ -28,7 +26,6 @@ async function getPostWithUserEmails(postService: PostService, userService: User
             userEmail: userEmail
         };
     }));
-
 }
 
 main();
