@@ -1,9 +1,9 @@
 package org.example.V4;
 
-abstract class Movement {
+abstract class Explorer {
     protected MapV4 map;
 
-    public Movement(MapV4 map) {
+    public Explorer(MapV4 map) {
         this.map = map;
     }
 

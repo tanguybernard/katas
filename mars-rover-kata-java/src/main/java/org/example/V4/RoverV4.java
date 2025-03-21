@@ -1,6 +1,6 @@
 package org.example.V4;
 
-public class RoverV4 extends Movement {
+public class RoverV4 extends Explorer {
     private int x;
     private int y;
     private char direction;
